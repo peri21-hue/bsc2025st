@@ -4,7 +4,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./WF.png">
   <link rel="shortcut icon" href="./WF.png">
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device‑width, initial‑scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BSC2025Stats</title>
   <style>
     :root{
@@ -17,192 +17,192 @@
       --maxw:1380px; /* ensanchado */
       --logo-bg:#0b101d;
     }
-    *{box‑sizing:border-box}
+    *{box-sizing:border-box}
     body{
       margin:0; color:var(--text);
-      font‑family:Inter,ui‑sans‑serif,system‑ui,Segoe UI,Roboto,Helvetica,Arial;
+      font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
       background:
-        radial‑gradient(900px 500px at ‑10% ‑10%, #1b2a5e 0%, rgba(27,42,94,0) 60%),
-        radial‑gradient(900px 700px at 110% 0%, #0f2048 0%, rgba(15,32,72,0) 60%),
-        var(--bg‑0);
+        radial-gradient(900px 500px at -10% -10%, #1b2a5e 0%, rgba(27,42,94,0) 60%),
+        radial-gradient(900px 700px at 110% 0%, #0f2048 0%, rgba(15,32,72,0) 60%),
+        var(--bg-0);
     }
-    a{color:inherit;text‑decoration:none}
+    a{color:inherit;text-decoration:none}
+    
+    .topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+      background:linear-gradient(180deg,rgba(10,14,22,.95),rgba(10,14,22,.6));
+      border-bottom:1px solid var(--line);}
+    .topnav{max-width:var(--maxw);margin:auto;padding:10px 18px;display:flex;align-items:center;gap:14px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900}
+    .logo{width:34px;height:34px;border-radius:10px;overflow:hidden;background:#0a0e16}
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .tabs{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
 
-    .topbar{position:sticky;top:0;z‑index:50;backdrop‑filter:blur(12px);
-      background:linear‑gradient(180deg,rgba(10,14,22,.95),rgba(10,14,22,.6));
-      border‑bottom:1px solid var(--line);}
-    .topnav{max‑width:var(--maxw);margin:auto;padding:10px 18px;display:flex;align‑items:center;gap:14px}
-    .brand{display:flex;align‑items:center;gap:10px;font‑weight:900}
-    .logo{width:34px;height:34px;border‑radius:10px;overflow:hidden;background:#0a0e16}
-    .logo img{width:100%;height:100%;object‑fit:cover;display:block}
-    .tabs{margin‑left:auto;display:flex;gap:10px;flex‑wrap:wrap}
-
-    .subhead{max‑width:var(--maxw);margin:14px auto 0;padding:0 18px 14px}
-    .crumbs{color:var(--muted);font‑size:12px;text‑transform:uppercase;letter‑spacing:.12em}
-    .eventbar{margin‑top:10px;display:flex;align‑items:center;justify‑content:space‑between;gap:14px}
-    .eventname{font‑weight:900;font‑size:28px}
+    .subhead{max-width:var(--maxw);margin:14px auto 0;padding:0 18px 14px}
+    .crumbs{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+    .eventbar{margin-top:10px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .eventname{font-weight:900;font-size:28px}
     /* 🔶 “Brawl Stars” con naranja */
-    .eventname span{background:linear‑gradient(90deg,var(--acc‑2),var(--acc‑1));‑webkit‑background‑clip:text;background‑clip:text;color:transparent}
-    .pillnav{display:flex;gap:8px;flex‑wrap:wrap}
-    .pill{padding:8px 12px;border‑radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);font‑weight:600;font‑size:12px}
-    .pill.active{background:linear‑gradient(180deg,rgba(124,135,255,.18),rgba(51,211,255,.12));color:var(--text);border‑color:rgba(124,135,255,.35)}
+    .eventname span{background:linear-gradient(90deg,var(--acc-2),var(--acc-1));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .pillnav{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);font-weight:600;font-size:12px}
+    .pill.active{background:linear-gradient(180deg,rgba(124,135,255,.18),rgba(51,211,255,.12));color:var(--text);border-color:rgba(124,135,255,.35)}
 
-    main{max‑width:var(--maxw);margin:0 auto;padding:0 18px 80px}
+    main{max-width:var(--maxw);margin:0 auto;padding:0 18px 80px}
 
-    .view{display:none;animation:fade .18s ease‑out}
+    .view{display:none;animation:fade .18s ease-out}
     .view.active{display:block}
     @keyframes fade{from{opacity:.6;transform:translateY(3px)}to{opacity:1;transform:none}}
 
-    .kpis{display:grid;grid‑template‑columns:repeat(4,1fr);gap:12px;margin:14px 0}
-    @media (max‑width:1000px){.kpis{grid‑template‑columns:repeat(2,1fr)}}
-    .kpi{display:flex;align‑items:center;justify‑content:space‑between;gap:8px;padding:14px 16px;
-      background:linear‑gradient(180deg,var(--bg‑1),var(--bg‑2));border:1px solid var(--line);border‑radius:14px}
-    .kpi .label{color:var(--muted);font‑size:12px}
-    .kpi .value{font‑weight:900;font‑size:20px}
-    .span‑2{grid‑column:span 2}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+    @media (max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}}
+    .kpi{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 16px;
+      background:linear-gradient(180deg,var(--bg-1),var(--bg-2));border:1px solid var(--line);border-radius:14px}
+    .kpi .label{color:var(--muted);font-size:12px}
+    .kpi .value{font-weight:900;font-size:20px}
+    .span-2{grid-column:span 2}
 
     /* AD (Discord) */
-    .ad{height:120px;border:1px solid var(--line);border‑radius:14px;overflow:hidden;margin:12px 0}
+    .ad{height:120px;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:12px 0}
     .ad a{display:block;height:100%}
-    .ad img{width:100%;height:100%;object‑fit:cover;display:block}
+    .ad img{width:100%;height:100%;object-fit:cover;display:block}
 
-    .grid{display:grid;grid‑template‑columns:1.3fr 1.2fr .9fr;gap:12px}
-    @media (max‑width:1100px){.grid{grid‑template‑columns:1fr}}
-    .card{background:linear‑gradient(180deg,var(--bg‑1),var(--bg‑2));border:1px solid var(--line);border‑radius:18px}
+    .grid{display:grid;grid-template-columns:1.3fr 1.2fr .9fr;gap:12px}
+    @media (max-width:1100px){.grid{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg,var(--bg-1),var(--bg-2));border:1px solid var(--line);border-radius:18px}
     .pad{padding:16px}
-    .cardhead{display:flex;align‑items:center;justify‑content:space‑between;margin‑bottom:10px}
-    .ch‑left{display:flex;align‑items:center;gap:10px}
-    .cw{width:28px;height:28px;border‑radius:8px;background:rgba(255,255,255,.06);display:grid;place‑items:center}
+    .cardhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .ch-left{display:flex;align-items:center;gap:10px}
+    .cw{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.06);display:grid;place-items:center}
     .cw img{width:22px;height:22px;display:block}
 
-    .ctitle{font‑weight:900}
-    .csub{color:var(--muted);font‑size:12px;margin‑top:2px}
+    .ctitle{font-weight:900}
+    .csub{color:var(--muted);font-size:12px;margin-top:2px}
 
     /* logos unificados */
-    .champ{display:flex;align‑items:center;gap:8px}
+    .champ{display:flex;align-items:center;gap:8px}
     .cimg{
-      width:34px;height:34px;border‑radius:10px;overflow:hidden;
-      border:1px solid rgba(255,255,255,.18);background:var(--logo‑bg);
-      display:grid;place‑items:center;padding:3px;
+      width:34px;height:34px;border-radius:10px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);background:var(--logo-bg);
+      display:grid;place-items:center;padding:3px;
     }
-    .cimg img{width:100%;height:100%;object‑fit:contain;display:block}
+    .cimg img{width:100%;height:100%;object-fit:contain;display:block}
 
-    table{width:100%;border‑collapse:collapse;font‑size:14px}
-    th,td{padding:12px 10px;border‑bottom:1px dashed var(--line);text‑align:left}
-    th{color:var(--muted);font‑size:12px;text‑transform:uppercase;letter‑spacing:.08em}
-    .wr‑table th:nth‑child(n+2), .wr‑table td:nth‑child(n+2){ text‑align:center }
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    th,td{padding:12px 10px;border-bottom:1px dashed var(--line);text-align:left}
+    th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+    .wr-table th:nth-child(n+2), .wr-table td:nth-child(n+2){ text-align:center }
 
-    .chart{padding:12px;border‑radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+    .chart{padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
     canvas{width:100%;height:360px;display:block}
 
-    .livegrid{display:grid;grid‑template‑columns:1fr;gap:10px}
-    .match{display:grid;grid‑template‑columns:1fr auto 1fr;gap:10px;align‑items:center;padding:12px;border:1px solid var(--line);border‑radius:14px;background:rgba(255,255,255,.03)}
-    .side{display:flex;align‑items:center;gap:8px;min‑width:0}
-    .right{justify‑content:flex‑end}
-    .tlogo{width:34px;height:34px;border‑radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.15);background:var(--logo‑bg);display:grid;place‑items:center;padding:3px}
-    .tlogo img{width:100%;height:100%;object‑fit:contain;display:block}
-    .tname{font‑weight:800;white‑space:nowrap;overflow:hidden;text‑overflow:ellipsis}
+    .livegrid{display:grid;grid-template-columns:1fr;gap:10px}
+    .match{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03)}
+    .side{display:flex;align-items:center;gap:8px;min-width:0}
+    .right{justify-content:flex-end}
+    .tlogo{width:34px;height:34px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.15);background:var(--logo-bg);display:grid;place-items:center;padding:3px}
+    .tlogo img{width:100%;height:100%;object-fit:contain;display:block}
+    .tname{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
     /* ===== H2H ===== */
-    .matrix{overflow:auto;border:1px solid var(--line);border‑radius:14px}
-    /* ❌ sin min‑width gigante => cabe sin barra horizontal */
-    .matrix table{width:100%;table‑layout:fixed;min‑width:0}
-    .matrix th,.matrix td{padding:10px 8px;border‑bottom:1px dashed var(--line);border‑right:1px dashed var(--line);font‑size:12px}
-    .matrix th:last‑child,.matrix td:last‑child{border‑right:none}
-    .matrix thead th{vertical‑align:bottom}
-    .h2h‑colhead{display:flex;flex‑direction:column;align‑items:center;gap:6px}
-    .h2h‑colhead .cimg{width:34px;height:34px}
-    .h2h‑leftcell{min‑width:230px} /* un pelín más ancha para logos iguales */
-    .cell‑empty{opacity:.35}
-    .cell‑diag{background:rgba(255,255,255,.04)}
+    .matrix{overflow:auto;border:1px solid var(--line);border-radius:14px}
+    /* ❌ sin min-width gigante => cabe sin barra horizontal */
+    .matrix table{width:100%;table-layout:fixed;min-width:0}
+    .matrix th,.matrix td{padding:10px 8px;border-bottom:1px dashed var(--line);border-right:1px dashed var(--line);font-size:12px}
+    .matrix th:last-child,.matrix td:last-child{border-right:none}
+    .matrix thead th{vertical-align:bottom}
+    .h2h-colhead{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .h2h-colhead .cimg{width:34px;height:34px}
+    .h2h-leftcell{min-width:230px} /* un pelín más ancha para logos iguales */
+    .cell-empty{opacity:.35}
+    .cell-diag{background:rgba(255,255,255,.04)}
 
     /* ===== Teams ===== */
-    .teams‑wrapper{display:grid;gap:18px;margin‑top:14px}
-    .group‑block{border:1.35px solid var(--line);border‑radius:16px;background:linear‑gradient(180deg,#0f1628,#0b101d);padding:12px}
-    .group‑title{display:flex;align‑items:center;gap:10px;font‑weight:900;margin:4px 4px 12px}
-    .group‑grid{display:grid;grid‑template‑columns:1fr 1fr 1fr;grid‑auto‑rows:auto;gap:12px}
-    @media (max‑width:1100px){.group‑grid{grid‑template‑columns:1fr}}
+    .teams-wrapper{display:grid;gap:18px;margin-top:14px}
+    .group-block{border:1.35px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#0f1628,#0b101d);padding:12px}
+    .group-title{display:flex;align-items:center;gap:10px;font-weight:900;margin:4px 4px 12px}
+    .group-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-auto-rows:auto;gap:12px}
+    @media (max-width:1100px){.group-grid{grid-template-columns:1fr}}
 
-    .team‑card{border:1.5px solid var(--line);border‑radius:16px;overflow:hidden;background:linear‑gradient(180deg,#0f1628,#0b101d)}
-    .team‑head{display:flex;align‑items:center;gap:12px;padding:14px 14px 10px}
-    .team‑logo{width:46px;height:46px;border‑radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.18);flex‑shrink:0;background:var(--logo‑bg);display:grid;place‑items:center;padding:3px}
-    .team‑logo img{width:100%;height:100%;object‑fit:contain}
-    .team‑title{font‑size:18px;font‑weight:900;line‑height:1.1}
-    .team‑meta{font‑size:12px;color:var(--muted)}
-    .team‑pill{margin‑left:auto;font‑size:11px;color:#0a1a12;padding:4px 10px;border‑radius:999px;border:1px solid rgba(52,211,153,.45);background:linear‑gradient(135deg,rgba(52,211,153,.35),rgba(52,211,153,.15));font‑weight:800;letter‑spacing:.06em}
-    .roster‑wrap{display:grid;grid‑template‑columns:1fr;gap:8px;padding:0 12px 12px}
-    .roster‑section{border‑top:1px dashed var(--line);padding‑top:10px}
-    .section‑title{font‑size:12px;color:var(--muted);letter‑spacing:.12em;text‑transform:uppercase;margin:4px 2px 6px}
-    .member{display:flex;align‑items:center;gap:10px;padding:8px;border:1px solid var(--line);border‑radius:10px;background:rgba(255,255,255,.03)}
-    .member.staff{background:linear‑gradient(180deg,rgba(124,135,255,.07),rgba(51,211,255,.05))}
-    .flag‑img{width:22px;height:22px;border‑radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.2);background:var(--logo‑bg);flex‑shrink:0;display:grid;place‑items:center}
-    .flag‑img img{width:100%;height:100%;object‑fit:cover}
-    .member‑name{font‑weight:800}
-    .member‑role{margin‑left:auto;display:flex;align‑items:center;gap:6px;font‑size:12px;color:var(--muted)}
-    .role‑chip{font‑size:11px;padding:3px 8px;border‑radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);font‑weight:700;letter‑spacing:.04em}
-    .role‑chip.coach{border‑color:rgba(251,191,36,.45);background:rgba(251,191,36,.12);color:#f8d481}
-    .role‑chip.analyst{border‑color:rgba(91,124,255,.45);background:rgba(91,124,255,.12);color:#a9b9ff}
-    .role‑chip.manager{border‑color:rgba(52,211,153,.45);background:rgba(52,211,153,.12);color:#8be3c3}
+    .team-card{border:1.5px solid var(--line);border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#0f1628,#0b101d)}
+    .team-head{display:flex;align-items:center;gap:12px;padding:14px 14px 10px}
+    .team-logo{width:46px;height:46px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.18);flex-shrink:0;background:var(--logo-bg);display:grid;place-items:center;padding:3px}
+    .team-logo img{width:100%;height:100%;object-fit:contain}
+    .team-title{font-size:18px;font-weight:900;line-height:1.1}
+    .team-meta{font-size:12px;color:var(--muted)}
+    .team-pill{margin-left:auto;font-size:11px;color:#0a1a12;padding:4px 10px;border-radius:999px;border:1px solid rgba(52,211,153,.45);background:linear-gradient(135deg,rgba(52,211,153,.35),rgba(52,211,153,.15));font-weight:800;letter-spacing:.06em}
+    .roster-wrap{display:grid;grid-template-columns:1fr;gap:8px;padding:0 12px 12px}
+    .roster-section{border-top:1px dashed var(--line);padding-top:10px}
+    .section-title{font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin:4px 2px 6px}
+    .member{display:flex;align-items:center;gap:10px;padding:8px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.03)}
+    .member.staff{background:linear-gradient(180deg,rgba(124,135,255,.07),rgba(51,211,255,.05))}
+    .flag-img{width:22px;height:22px;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.2);background:var(--logo-bg);flex-shrink:0;display:grid;place-items:center}
+    .flag-img img{width:100%;height:100%;object-fit:cover}
+    .member-name{font-weight:800}
+    .member-role{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+    .role-chip{font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);font-weight:700;letter-spacing:.04em}
+    .role-chip.coach{border-color:rgba(251,191,36,.45);background:rgba(251,191,36,.12);color:#f8d481}
+    .role-chip.analyst{border-color:rgba(91,124,255,.45);background:rgba(91,124,255,.12);color:#a9b9ff}
+    .role-chip.manager{border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.12);color:#8be3c3}
 
-    .matches‑board{border:1.35px solid var(--line);border‑radius:16px;background:linear‑gradient(180deg,#0f1628,#0b101d);padding:10px 10px}
-    .mb‑title{font‑weight:900;margin:4px 6px 10px}
-    .mb‑row{display:grid;grid‑template‑columns:1fr 24px 1fr;align‑items:center;gap:8px;border‑top:1px dashed var(--line);padding:10px 6px}
-    .mb‑row:first‑of‑type{border‑top:none}
-    .mb‑round{grid‑column:1 / ‑1;color:var(--muted);font‑size:12px;margin‑top:6px;margin‑bottom:-2px}
-    .mb‑team{display:flex;align‑items:center;gap:8px;padding:8px;border:1px solid var(--line);border‑radius:8px;background:rgba(255,255,255,.03)}
-    .mb‑center{display:grid;place‑items:center;height:40px;position:relative}
-    .mb‑center::before{content:"";position:absolute;left:50%;top:-24px;bottom:-24px;width:2px;background:linear‑gradient(#ffffff22,#ffffff22) no‑repeat center/2px 100%}
-    .mb‑badge{font‑weight:800;letter‑spacing:.06em}
-    .mb‑muted{color:var(--muted);font‑size:12px;margin‑left:6px}
+    .matches-board{border:1.35px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#0f1628,#0b101d);padding:10px 10px}
+    .mb-title{font-weight:900;margin:4px 6px 10px}
+    .mb-row{display:grid;grid-template-columns:1fr 24px 1fr;align-items:center;gap:8px;border-top:1px dashed var(--line);padding:10px 6px}
+    .mb-row:first-of-type{border-top:none}
+    .mb-round{grid-column:1 / -1;color:var(--muted);font-size:12px;margin-top:6px;margin-bottom:-2px}
+    .mb-team{display:flex;align-items:center;gap:8px;padding:8px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.03)}
+    .mb-center{display:grid;place-items:center;height:40px;position:relative}
+    .mb-center::before{content:"";position:absolute;left:50%;top:-24px;bottom:-24px;width:2px;background:linear-gradient(#ffffff22,#ffffff22) no-repeat center/2px 100%}
+    .mb-badge{font-weight:800;letter-spacing:.06em}
+    .mb-muted{color:var(--muted);font-size:12px;margin-left:6px}
 
     /* ===== Casters ===== */
-    .casters‑layout{display:grid;grid‑template‑columns:1fr 1fr .9fr;grid‑auto‑rows:minmax(220px,auto);gap:12px;margin‑top:14px}
-    @media (max‑width:1100px){.casters‑layout{grid‑template‑columns:1fr}.scrims‑bar{grid‑row:auto}}
-    .creator‑card{position:relative;border:1px solid var(--line);border‑radius:16px;overflow:hidden;background:linear‑gradient(180deg,#0f1628,#0b101d);display:flex;flex‑direction:column;min‑height:220px}
-    .creator‑card::before{content:"";position:absolute;inset:0 0 40% 0;background:radial‑gradient(220px 120px at 50% ‑20%, rgba(19,255,161,.28), rgba(19,255,161,0)),radial‑gradient(260px 160px at 90% ‑30%, rgba(69,255,188,.22), rgba(69,255,188,0));pointer‑events:none}
-    .creator‑top{display:flex;align‑items:flex‑end;gap:14px;padding:18px 16px 8px;z‑index:1}
-    .creator‑avatar{width:92px;height:92px;border‑radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:var(--logo‑bg);flex‑shrink:0;display:grid;place‑items:center}
-    .creator‑avatar img{width:100%;height:100%;object‑fit:cover;display:block}
-    .creator‑name{font‑weight:900;font‑size:22px;line‑height:1.1}
-    .creator‑real{display:flex;align‑items:center;gap:8px;color:var(--muted);font‑size:13px;margin‑top:4px}
-    .creator‑flag{width:18px;height:18px;border‑radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.2);background:var(--logo‑bg)}
-    .creator‑flag img{width:100%;height:100%;object‑fit:cover;display:block}
-    .creator‑footer{margin‑top:auto;border‑top:1px dashed var(--line);padding:10px 12px;display:flex;gap:10px;align‑items:center;flex‑wrap:wrap}
-    .btn‑icon{display:inline‑flex;align‑items:center;justify‑content:center;width:38px;height:34px;border‑radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:.2s}
-    .btn‑icon:hover{background:rgba(255,255,255,.08)}
-    .btn‑icon img{width:18px;height:18px;display:block}
-    .live‑chip{font‑size:10px;font‑weight:900;padding:2px 6px;border‑1px solid rgba(255,255,255,.2);
-      background:linear‑gradient(135deg,rgba(255,122,122,.4),rgba(255,207,122,.3));color:#071118}
+    .casters-layout{display:grid;grid-template-columns:1fr 1fr .9fr;grid-auto-rows:minmax(220px,auto);gap:12px;margin-top:14px}
+    @media (max-width:1100px){.casters-layout{grid-template-columns:1fr}.scrims-bar{grid-row:auto}}
+    .creator-card{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#0f1628,#0b101d);display:flex;flex-direction:column;min-height:220px}
+    .creator-card::before{content:"";position:absolute;inset:0 0 40% 0;background:radial-gradient(220px 120px at 50% -20%, rgba(19,255,161,.28), rgba(19,255,161,0)),radial-gradient(260px 160px at 90% -30%, rgba(69,255,188,.22), rgba(69,255,188,0));pointer-events:none}
+    .creator-top{display:flex;align-items:flex-end;gap:14px;padding:18px 16px 8px;z-index:1}
+    .creator-avatar{width:92px;height:92px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:var(--logo-bg);flex-shrink:0;display:grid;place-items:center}
+    .creator-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .creator-name{font-weight:900;font-size:22px;line-height:1.1}
+    .creator-real{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin-top:4px}
+    .creator-flag{width:18px;height:18px;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.2);background:var(--logo-bg)}
+    .creator-flag img{width:100%;height:100%;object-fit:cover;display:block}
+    .creator-footer{margin-top:auto;border-top:1px dashed var(--line);padding:10px 12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .btn-icon{display:inline-flex;align-items:center;justify-content:center;width:38px;height:34px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:.2s}
+    .btn-icon:hover{background:rgba(255,255,255,.08)}
+    .btn-icon img{width:18px;height:18px;display:block}
+    .live-chip{font-size:10px;font-weight:900;padding:2px 6px;border-radius:999px;border:1px solid rgba(255,255,255,.2);
+      background:linear-gradient(135deg,rgba(255,122,122,.4),rgba(255,207,122,.3));color:#071118}
 
-    .scrims‑bar{border:1px solid var(--line);border‑radius:16px;background:linear‑gradient(180deg,#0e1424,#111a31);padding:14px;grid‑column:3;grid‑row:1 / span 2;display:flex;flex‑direction:column;gap:10px}
-    .scrims‑bar .title{font‑weight:900}
-    .live‑item{display:grid;grid‑template‑columns:auto 1fr auto;gap:10px;align‑items:center;padding:8px;border:1px solid var(--line);border‑radius:10px;background:rgba(255,255,255,.03);margin‑bottom:8px}
-    .live‑item .avatar{width:38px;height:38px;border‑radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:var(--logo‑bg)}
-    .live‑item .avatar img{width:100%;height:100%;object‑fit:cover}
-    .live‑item .title{font‑weight:700;font‑size:13px;line‑height:1.2}
-    .live‑item .author{color:var(--muted);font‑size:12px;margin‑top:2px}
-    .platforms{display:flex;gap:8px;flex‑direction:column;align‑items:flex‑end}
-    .platforms a{display:inline‑flex;align‑items:center;gap:8px;justify‑content:center;height:32px;border‑radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.04);padding:0 10px;font‑weight:800}
+    .scrims-bar{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#0e1424,#111a31);padding:14px;grid-column:3;grid-row:1 / span 2;display:flex;flex-direction:column;gap:10px}
+    .scrims-bar .title{font-weight:900}
+    .live-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:8px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.03);margin-bottom:8px}
+    .live-item .avatar{width:38px;height:38px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:var(--logo-bg)}
+    .live-item .avatar img{width:100%;height:100%;object-fit:cover}
+    .live-item .title{font-weight:700;font-size:13px;line-height:1.2}
+    .live-item .author{color:var(--muted);font-size:12px;margin-top:2px}
+    .platforms{display:flex;gap:8px;flex-direction:column;align-items:flex-end}
+    .platforms a{display:inline-flex;align-items:center;gap:8px;justify-content:center;height:32px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.04);padding:0 10px;font-weight:800}
     .platforms a img{width:18px;height:18px}
 
     /* ===== Videos ===== */
-    .videos‑block{margin‑top:14px;border‑top:1px dashed var(--line);padding‑top:12px}
-    .videos‑title{font‑weight:900;margin:4px 6px 10px}
-    .videos‑grid{display:grid;grid‑template‑columns:repeat(4,1fr);gap:12px}
-    @media (max‑width:1100px){.videos‑grid{grid‑template‑columns:repeat(2,1fr)}}
-    @media (max‑width:640px){.videos‑grid{grid‑template‑columns:1fr}}
-    .video‑card{border:1px solid var(--line);border‑radius:14px;overflow:hidden;background:linear‑gradient(180deg,#0f1628,#0b101d);display:flex;flex‑direction:column}
-    .video‑thumb{position:relative;aspect‑ratio:16/9;background:var(--logo‑bg)}
-    .video‑thumb img{width:100%;height:100%;object‑fit:cover;display:block}
-    .video‑meta{padding:10px 12px}
-    .video‑title{font‑weight:800;line‑height:1.25}
-    .video‑author{color:var(--muted);font‑size:12px;margin‑top:4px}
-    .video‑card:hover{filter:brightness(1.04)}
+    .videos-block{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+    .videos-title{font-weight:900;margin:4px 6px 10px}
+    .videos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:1100px){.videos-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.videos-grid{grid-template-columns:1fr}}
+    .video-card{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#0f1628,#0b101d);display:flex;flex-direction:column}
+    .video-thumb{position:relative;aspect-ratio:16/9;background:var(--logo-bg)}
+    .video-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .video-meta{padding:10px 12px}
+    .video-title{font-weight:800;line-height:1.25}
+    .video-author{color:var(--muted);font-size:12px;margin-top:4px}
+    .video-card:hover{filter:brightness(1.04)}
 
     /* ==== Colores de porcentaje en toda la web ==== */
-    .wr‑red{   color:var(--red);   font‑weight:800 }
-    .wr‑amber{ color:#f59e0b;      font‑weight:800 }
-    .wr‑green{ color:var(--green); font‑weight:800 }
+    .wr-red{   color:var(--red);   font-weight:800 }
+    .wr-amber{ color:#f59e0b;      font-weight:800 }
+    .wr-green{ color:var(--green); font-weight:800 }
   </style>
 </head>
 <body>
@@ -211,8 +211,8 @@
       <div class="brand">
         <div class="logo"><img src="./WF.png" alt="WF" onerror="this.onerror=null;this.src='./WF.png'"></div>
         <div>
-          <div style="font‑size:12px;color:var(--muted);line‑height:1;text‑transform:uppercase;letter‑spacing:.16em">BSC2025Stats</div>
-          <div style="font‑weight:900;letter‑spacing:.3px">Brawl — Worlds 2025 </div>
+          <div style="font-size:12px;color:var(--muted);line-height:1;text-transform:uppercase;letter-spacing:.16em">BSC2025Stats</div>
+          <div style="font-weight:900;letter-spacing:.3px">Brawl — Worlds 2025 </div>
         </div>
       </div>
       <div class="tabs"></div>
@@ -223,34 +223,34 @@
     <div class="eventbar">
       <div class="eventname">WORLDS — <span>Brawl Stars</span> 2025</div>
       <nav class="pillnav" id="topNav">
-        <a class="pill" data‑view="stats" href="#stats">Stats</a>
-        <a class="pill" data‑view="teams" href="#teams">Teams</a>
-        <a class="pill" data‑view="scrims" href="#scrims">Casters Live</a>
+        <a class="pill" data-view="stats" href="#stats">Stats</a>
+        <a class="pill" data-view="teams" href="#teams">Teams</a>
+        <a class="pill" data-view="scrims" href="#scrims">Casters Live</a>
       </nav>
     </div>
   </header>
 
   <main>
     <!-- ============= VIEW: STATS ============= -->
-    <section id="view‑stats" class="view active">
+    <section id="view-stats" class="view active">
       <div class="kpis">
         <div class="kpi"><div><div class="label">Total Games</div><div class="value" id="kpiGames">—</div></div></div>
         <div class="kpi"><div><div class="label">Ongoing scrims</div><div class="value" id="kpiScrims">0</div></div></div>
-        <div class="kpi span‑2" style="justify‑content:center"><div class="value">𝕏 ‑ <a href="https://x.com/Iperibs" target="_blank" rel="noopener noreferrer">@iPeriBS</a> · <a href="https://x.com/Ssugus__" target="_blank" rel="noopener noreferrer">@Ssugus__</a></div></div>
+        <div class="kpi span-2" style="justify-content:center"><div class="value">𝕏 - <a href="https://x.com/Iperibs" target="_blank" rel="noopener noreferrer">@iPeriBS</a> · <a href="https://x.com/Ssugus__" target="_blank" rel="noopener noreferrer">@Ssugus__</a></div></div>
       </div>
 
       <!-- AD: imagen 'bg' que abre Discord -->
       <div class="ad">
         <a href="https://discord.gg/YeXvPmsqWT" target="_blank" rel="noopener">
-          <img src="./bg.png" alt="Join our Discord">
+          <img src="bg.png" alt="Join our Discord">
         </a>
       </div>
 
       <div class="grid">
         <!-- BRAWLERS -->
-        <section class="card pad" id="top‑brawlers">
+        <section class="card pad" id="top-brawlers">
           <div class="cardhead">
-            <div class="ch‑left">
+            <div class="ch-left">
               <div class="cw"><img src="./unknown.png" alt=""></div>
               <div>
                 <div class="ctitle">BRAWLERS PLAYED</div>
@@ -267,16 +267,16 @@
         <!-- WINRATES -->
         <section class="card pad" id="winrates">
           <div class="cardhead">
-            <div class="ch‑left">
+            <div class="ch-left">
               <div class="cw"><img src="./unknown.png" alt=""></div>
               <div>
                 <div class="ctitle">WINRATE BY GROUP</div>
-                <div class="csub"><span class="group‑label">Group:</span> <span id="groupTabs" class="pillnav" style="display:inline‑flex;vertical‑align:middle"></span></div>
+                <div class="csub"><span class="group-label">Group:</span> <span id="groupTabs" class="pillnav" style="display:inline-flex;vertical-align:middle"></span></div>
               </div>
             </div>
           </div>
-          <div class="chart"><canvas id="wrChart" aria‑label="Winrates chart" role="img"></canvas></div>
-          <table class="wr‑table" style="margin‑top:10px">
+          <div class="chart"><canvas id="wrChart" aria-label="Winrates chart" role="img"></canvas></div>
+          <table class="wr-table" style="margin-top:10px">
             <thead><tr><th>Team</th><th>Games</th><th>Win</th><th>Loss</th><th>Winrate</th></tr></thead>
             <tbody id="wrTable"></tbody>
           </table>
@@ -285,7 +285,7 @@
         <!-- RESULTS -->
         <section class="card pad" id="ongoing">
           <div class="cardhead">
-            <div class="ch‑left">
+            <div class="ch-left">
               <div class="cw"><img src="./unknown.png" alt=""></div>
               <div>
                 <div class="ctitle">SCRIM RESULTS</div>
@@ -298,9 +298,9 @@
       </div>
 
       <!-- H2H -->
-      <section class="card pad" id="h2h" style="margin‑top:12px">
+      <section class="card pad" id="h2h" style="margin-top:12px">
         <div class="cardhead">
-          <div class="ch‑left">
+          <div class="ch-left">
             <div class="cw"><img src="./unknown.png" alt=""></div>
             <div>
               <div class="ctitle">HEAD TO HEAD</div>
@@ -313,23 +313,23 @@
     </section>
 
     <!-- ============= VIEW: TEAMS ============= -->
-    <section id="view‑teams" class="view">
+    <section id="view-teams" class="view">
       <section class="card pad">
         <div class="cardhead">
-          <div class="ch‑left">
+          <div class="ch-left">
             <div class="cw"><img src="./unknown.png" alt=""></div>
             <div class="ctitle">TEAMS & ROSTERS</div>
           </div>
         </div>
-        <div id="teamsWrapper" class="teams‑wrapper"></div>
+        <div id="teamsWrapper" class="teams-wrapper"></div>
       </section>
     </section>
 
     <!-- ============= VIEW: CASTERS (2 + barra + 2) ============= -->
-    <section id="view‑scrims" class="view">
+    <section id="view-scrims" class="view">
       <section class="card pad">
         <div class="cardhead">
-          <div class="ch‑left">
+          <div class="ch-left">
             <div class="cw"><img src="./unknown.png" alt=""></div>
             <div>
               <div class="ctitle">Casters Live Now</div>
@@ -338,11 +338,11 @@
           </div>
         </div>
 
-        <div id="castersLayout" class="casters‑layout"></div>
+        <div id="castersLayout" class="casters-layout"></div>
 
-        <div class="videos‑block">
-          <div class="videos‑title">Caster Videos</div>
-          <div id="casterVideos" class="videos‑grid"></div>
+        <div class="videos-block">
+          <div class="videos-title">Caster Videos</div>
+          <div id="casterVideos" class="videos-grid"></div>
         </div>
       </section>
     </section>
@@ -370,11 +370,12 @@
   const MR_RANGE = 'B4:D10'; // 7 filas
   const MR_SHEET_ID = FACE_SHEET_ID;
 
-  const TEAM_LOGO_FOLDER   = './';    // ← cambiado: misma carpeta
+  /* 👇 ahora todo está suelto en raíz */
+  const TEAM_LOGO_FOLDER   = '.';
   const TEAM_LOGO_EXT      = '.png';
-  const BRAWLER_IMG_FOLDER = './';    // ← cambiado
+  const BRAWLER_IMG_FOLDER = '.';
   const BRAWLER_IMG_EXT    = '.png';
-  const FLAG_FOLDER        = './';    // ← cambiado
+  const FLAG_FOLDER        = '.';
   const FLAG_EXT           = '.png';
   const DEFAULT_IMG = './WF.png';
   const UNKNOWN_IMG = './unknown.png';
@@ -413,7 +414,7 @@
   /* ======= ROSTERS (players + staff) ======= */
   function iso2(country){
     if(!country) return null;
-    const s = String(country).toLowerCase().normalize('NFD').replace(/[\u0300‑\u036f]/g,'').trim();
+    const s = String(country).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
     const map = {
       'puerto rico':'pr','mexico':'mx','mejico':'mx','guatemala':'gt','espana':'es','espanol':'es','españa':'es',
       'usa':'us','estados unidos':'us','reino unido':'gb','uk':'gb',
@@ -446,21 +447,21 @@
   const $ = s=>document.querySelector(s);
   const $$ = s=>Array.from(document.querySelectorAll(s));
   function initials(n){ return (n||'').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join(''); }
-  function teamLogo(t){ return `${TEAM_LOGO_FOLDER}${encodeURIComponent(t.name)}${TEAM_LOGO_EXT}`; }
-  function brawlerIcon(name){ return `${BRAWLER_IMG_FOLDER}${encodeURIComponent(name)}${BRAWLER_IMG_EXT}`; }
-  function flagImgByCountry(country){ const iso=iso2(country); return iso?`${FLAG_FOLDER}${iso}${FLAG_EXT}`:UNKNOWN_IMG; }
-  function flagImgByISO(iso){ return iso?`${FLAG_FOLDER}${iso.toLowerCase()}${FLAG_EXT}`:UNKNOWN_IMG; }
+  function teamLogo(t){ return `${TEAM_LOGO_FOLDER}/${encodeURIComponent(t.name)}${TEAM_LOGO_EXT}`; }
+  function brawlerIcon(name){ return `${BRAWLER_IMG_FOLDER}/${encodeURIComponent(name)}${BRAWLER_IMG_EXT}`; }
+  function flagImgByCountry(country){ const iso=iso2(country); return iso?`${FLAG_FOLDER}/${iso}${FLAG_EXT}`:UNKNOWN_IMG; }
+  function flagImgByISO(iso){ return iso?`${FLAG_FOLDER}/${iso.toLowerCase()}${FLAG_EXT}`:UNKNOWN_IMG; }
 
   const TEAM_ABBR = {
     'SK GAMING':'SK','HMBLE':'HMB','FUT ESPORTS':'FUT','TEAM HERETICS':'TH',
     'NOVO ESPORTS':'NOVO','REPLY TOTEM':'TTM','PAPARA SUPERMASSIVE':'SUP','TRIBE GAMING':'TRB',
     'SPACESTATION GAMING':'SSG','STMN':'STMN','ZETA DIVISION':'ZETA','REJECT':'RC',
-    'REVENANT XSPARK':'RXS','LOUD':'LOUD','SKCALALAS SA':'SKC',
+    'REVENANT XSPARK':'RNTX','LOUD':'LOUD','CRAZY RACCOON':'CR','SKCALALAS SA':'SKC',
     /* extras */
     'NAVI':'NAVI','RVL':'RVL','nxt':'NXT'
   };
 
-  function normName(s){ return String(s||'').toLowerCase().replace(/e[-\s]?sports|esports|gaming|team/g,'').replace(/[^a‑z0‑9]+/g,''); }
+  function normName(s){ return String(s||'').toLowerCase().replace(/e[-\s]?sports|esports|gaming|team/g,'').replace(/[^a-z0-9]+/g,''); }
 
   async function gvizRangeGid(spreadsheetId, gid, range){
     const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json&gid=${encodeURIComponent(gid)}&range=${encodeURIComponent(range)}`;
@@ -485,9 +486,9 @@
       if (m) v = parseFloat(m[0]);
     }
     if (v==null || isNaN(v)) return '';
-    if (v < 35)  return 'wr‑red';
-    if (v <= 60) return 'wr‑amber';
-    return 'wr‑green';
+    if (v < 35)  return 'wr-red';
+    if (v <= 60) return 'wr-amber';
+    return 'wr-green';
   }
 
   /* ===== H2H helpers ===== */
@@ -513,7 +514,7 @@
 
   const TAG_TO_TEAM_ID = {
     RC:'RC', CR:'CR', FUT:'FUT', TH:'TH', TRB:'TRB', ZETA:'ZETA', HMB:'HMB', SKC:'SKC',
-    TTM:'TTM', LOUD:'LOUD', NOVO:'NOVO', STMN:'STMN', RXS:'RXS', SSG:'SSG', SK:'SK', SUP:'SUP',
+    TTM:'TTM', LOUD:'LOUD', NOVO:'NOVO', STMN:'STMN', RNTX:'RXS', RXS:'RXS', SSG:'SSG', SK:'SK', SUP:'SUP',
     NAVI:'NAVI', RVL:'RVL', NXT:'NXT'
   };
   const EXTRA_TEAMS = { NAVI:{id:'NAVI',name:'NAVI'}, RVL:{id:'RVL',name:'RVL'}, NXT:{id:'NXT',name:'nxt'} };
@@ -651,10 +652,10 @@ async function loadFaceToFaceFromSheet(){
           pickrate = pickrateMap.get(qKey);
           if(pickrate==null){
             const hits = [...pickrateMap.keys()].filter(k=> k.includes(qKey) || qKey.includes(k));
-            if(hits.length) pickrate = pickrateMap.get(hits.sort((a,b)=>a.length‑b.length)[0]);
+            if(hits.length) pickrate = pickrateMap.get(hits.sort((a,b)=>a.length-b.length)[0]);
           }
         }
-        parsed.push({ id:String(name).toLowerCase().replace(/\s+/g,'‑'), name, picks:Number(games)||0, pickrate, winrate:wr, image:null });
+        parsed.push({ id:String(name).toLowerCase().replace(/\s+/g,'-'), name, picks:Number(games)||0, pickrate, winrate:wr, image:null });
       }
       if(parsed.length) DATA.brawlers = parsed;
     }catch(e){ console.warn('Brawlers sheet error:', e); }
@@ -743,18 +744,18 @@ async function loadFaceToFaceFromSheet(){
     const ctx = canvas.getContext('2d'); const dpr = devicePixelRatio||1;
     const rect = canvas.getBoundingClientRect(); const W=Math.max(340,rect.width), H=360;
     canvas.width=W*dpr; canvas.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-    const pad={l:60,r:16,t:16,b:56}; const PW=W‑pad.l‑pad.r; const PH=H‑pad.t‑pad.b;
+    const pad={l:60,r:16,t:16,b:56}; const PW=W-pad.l-pad.r; const PH=H-pad.t-pad.b;
     ctx.fillStyle='rgba(255,255,255,.03)'; ctx.fillRect(pad.l,pad.t,PW,PH);
-    ctx.strokeStyle='rgba(255,255,255,.08)'; ctx.beginPath(); for(let y=0;y<=100;y+=20){ const yy=pad.t+PH*(1‑y/100); ctx.moveTo(pad.l,yy); ctx.lineTo(pad.l+PW,yy);} ctx.stroke();
-    ctx.fillStyle='rgba(255,255,255,.6)'; ctx.font='12px Inter,system‑ui'; ctx.textAlign='right'; ctx.textBaseline='middle';
-    for(let y=0;y<=100;y+=20){ const yy=pad.t+PH*(1‑y/100); ctx.fillText(y+'%',pad.l‑8,yy); }
-    const n=entries.length||1, gap=18, bw=Math.max(14,(PW‑gap*(n‑1))/n);
+    ctx.strokeStyle='rgba(255,255,255,.08)'; ctx.beginPath(); for(let y=0;y<=100;y+=20){ const yy=pad.t+PH*(1-y/100); ctx.moveTo(pad.l,yy); ctx.lineTo(pad.l+PW,yy);} ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,.6)'; ctx.font='12px Inter,system-ui'; ctx.textAlign='right'; ctx.textBaseline='middle';
+    for(let y=0;y<=100;y+=20){ const yy=pad.t+PH*(1-y/100); ctx.fillText(y+'%',pad.l-8,yy); }
+    const n=entries.length||1, gap=18, bw=Math.max(14,(PW-gap*(n-1))/n);
     entries.forEach((e,i)=>{
-      const x=pad.l+i*(bw+gap), h=PH*(e.value/100), y=pad.t+(PH‑h);
+      const x=pad.l+i*(bw+gap), h=PH*(e.value/100), y=pad.t+(PH-h);
       const g=ctx.createLinearGradient(0,y,0,y+h); g.addColorStop(0,'#5b7cff'); g.addColorStop(1,'rgba(255,255,255,.2)');
       ctx.fillStyle=g; roundRect(ctx,x,y,bw,h,8); ctx.fill(); ctx.strokeStyle='rgba(255,255,255,.15)'; ctx.stroke();
-      ctx.fillStyle='#e9efff'; ctx.font='bold 12px Inter,system‑ui'; ctx.textAlign='center'; ctx.textBaseline='bottom'; ctx.fillText(Math.round(e.value)+'%',x+bw/2,y‑6);
-      ctx.fillStyle='rgba(255,255,255,.85)'; ctx.font='12px Inter,system‑ui'; ctx.textBaseline='top'; ctx.fillText(e.abbr,x+bw/2,pad.t+PH+12);
+      ctx.fillStyle='#e9efff'; ctx.font='bold 12px Inter,system-ui'; ctx.textAlign='center'; ctx.textBaseline='bottom'; ctx.fillText(Math.round(e.value)+'%',x+bw/2,y-6);
+      ctx.fillStyle='rgba(255,255,255,.85)'; ctx.font='12px Inter,system-ui'; ctx.textBaseline='top'; ctx.fillText(e.abbr,x+bw/2,pad.t+PH+12);
     });
   }
   function roundRect(ctx,x,y,w,h,r){
@@ -768,7 +769,7 @@ async function loadFaceToFaceFromSheet(){
     ctx.closePath();
   }
   function renderWinrates(){
-    const entries = entriesFor(currentGroup).sort((a,b)=>b.value‑a.value);
+    const entries = entriesFor(currentGroup).sort((a,b)=>b.value-a.value);
     drawBars(document.getElementById('wrChart'), entries);
     const tbody = document.getElementById('wrTable'); tbody.innerHTML='';
     entries.forEach(e=>{
@@ -822,8 +823,8 @@ async function loadFaceToFaceFromSheet(){
 
     const tags = extractTagsFromCellText(raw).filter(t=>WORLDS_TAGS.has(t));
     if(tags.length){
-      const counts = tags.reduce((a,t)=>(a[t]=(a[t]||0)+1,a), {});
-      const [topTag, cnt] = Object.entries(counts).sort((a,b)=>b[1]‑a[1])[0];
+      const counts = tags.reduce((a,t)=> (a[t]=(a[t]||0)+1, a), {});
+      const [topTag, cnt] = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
       if(cnt>=2) return TAG_TO_TEAM_ID[topTag];
       if(cnt===1 && Object.keys(counts).length===1) return TAG_TO_TEAM_ID[topTag];
     }
@@ -881,12 +882,12 @@ async function loadFaceToFaceFromSheet(){
           <div class="tlogo"><img src="${logoForTeamId(m.t1)}" alt="${abbrForTeamId(m.t1)}" onerror="this.onerror=null;this.src='${DEFAULT_IMG}'"></div>
           <div class="tname">${abbrForTeamId(m.t1)}</div>
         </div>
-        <div class="tname" style="text‑align:center">${m.score||''}</div>
+        <div class="tname" style="text-align:center">${m.score||''}</div>
         <div class="side right">
           <div class="tname">${abbrForTeamId(m.t2)}</div>
           <div class="tlogo"><img src="${logoForTeamId(m.t2)}" alt="${abbrForTeamId(m.t2)}" onerror="this.onerror=null;this.src='${DEFAULT_IMG}'"></div>
         </div>
-        <div class="csub" style="grid‑column:1/‑1;text‑align:center;margin‑top:6px">${m.stage||''}</div>`;
+        <div class="csub" style="grid-column:1/-1;text-align:center;margin-top:6px">${m.stage||''}</div>`;
       list.appendChild(row);
     });
   }
@@ -900,13 +901,13 @@ async function loadFaceToFaceFromSheet(){
     const thead = document.createElement('thead');
     const trh = document.createElement('tr');
     trh.innerHTML = `<th></th>` + H2H_COL_TAGS.map(tag=>{
-      if(!tag) return `<th></th>`;
+      if(!tag) return `<th></th>`;  // celda vacía si no hay tag
       const img = logoFromTag(tag);
       const ab  = abbrFromTag(tag);
-      return `<th style="text‑align:center">
-        <div class="h2h‑colhead">
+      return `<th style="text-align:center">
+        <div class="h2h-colhead">
           <div class="cimg"><img src="${img}" alt="${ab}" onerror="this.onerror=null;this.src='${DEFAULT_IMG}'"></div>
-          <div class="csub" style="white‑space:nowrap;overflow:hidden;text‑overflow:ellipsis">${ab}</div>
+          <div class="csub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${ab}</div>
         </div>
       </th>`;
     }).join('');
@@ -918,23 +919,23 @@ async function loadFaceToFaceFromSheet(){
     H2H_ROW_TAGS.forEach((rowTag, rIdx)=>{
       const tr = document.createElement('tr');
       const left = rowTag ? `
-        <td class="h2h‑leftcell">
+        <td class="h2h-leftcell">
           <div class="champ">
             <div class="cimg"><img src="${logoFromTag(rowTag)}" alt="${abbrFromTag(rowTag)}" onerror="this.onerror=null;this.src='${DEFAULT_IMG}'"></div>
             <span title="${abbrFromTag(rowTag)}">${abbrFromTag(rowTag)}</span>
           </div>
-        </td>` : `<td class="h2h‑leftcell"></td>`;
+        </td>` : `<td class="h2h-leftcell"></td>`;
       let cells = '';
       for(let cIdx=0;cIdx<H2H_COL_TAGS.length;cIdx++){
-        const isDiag = (rIdx===cIdx);
+        const isDiag = (rIdx===cIdx); // diagonal por índice (robusto con vacíos)
         const rawTxt = (H2H_TEXT[rIdx]?.[cIdx] || '').toString().trim();
         if(isDiag){
-          cells += `<td class="cell‑diag"></td>`;
-        } else if(rawTxt){
+          cells += `<td class="cell-diag"></td>`;
+        }else if(rawTxt){
           const cls = classForPct(rawTxt);
-          cells += `<td style="text‑align:center"><b class="${cls}">${rawTxt}</b></td>`;
-        } else{
-          cells += `<td class="cell‑empty"></td>`;
+          cells += `<td style="text-align:center"><b class="${cls}">${rawTxt}</b></td>`;
+        }else{
+          cells += `<td class="cell-empty"></td>`;
         }
       }
       tr.innerHTML = left + cells;
@@ -959,12 +960,12 @@ async function loadFaceToFaceFromSheet(){
   function memberRow(p, isStaff=false){
     const src = flagImgByCountry(p.country);
     const role = (p.role||'player').toLowerCase();
-    const chip = role!=='player' ? `<span class="role‑chip ${roleClass(role)}">${role.toUpperCase()}</span>` : '';
+    const chip = role!=='player' ? `<span class="role-chip ${roleClass(role)}">${role.toUpperCase()}</span>` : '';
     return `
       <div class="member ${isStaff?'staff':''}">
-        <div class="flag‑img"><img src="${src}" alt=""></div>
-        <div class="member‑name">${p.name}</div>
-        <div class="member‑role">${chip}</div>
+        <div class="flag-img"><img src="${src}" alt=""></div>
+        <div class="member-name">${p.name}</div>
+        <div class="member-role">${chip}</div>
       </div>`;
   }
   function teamCardHTML(t){
@@ -972,43 +973,47 @@ async function loadFaceToFaceFromSheet(){
     const players = rosterRaw.filter(p=> (p.role||'player')==='player');
     const staff   = rosterRaw.filter(p=> (p.role||'player')!=='player');
     return `
-      <article class="team‑card">
-        <header class="team‑head">
-          <div class="team‑logo"><img src="${teamLogo(t)}" alt="${t.name}" onerror="this.onerror=null;this.src='${DEFAULT_IMG}'"></div>
+      <article class="team-card">
+        <header class="team-head">
+          <div class="team-logo"><img src="${teamLogo(t)}" alt="${t.name}" onerror="this.onerror=null;this.src='${DEFAULT_IMG}'"></div>
           <div>
-            <div class="team‑title">${t.name}</div>
-            <div class="team‑meta">Region ${regionFor(t)}</div>
+            <div class="team-title">${t.name}</div>
+            <div class="team-meta">Region ${regionFor(t)}</div>
           </div>
-          <div class="team‑pill">Roster</div>
+          <div class="team-pill">Roster</div>
         </header>
-        <div class="roster‑wrap">
-          ${ players.length ? `<div class="roster‑section"><div class="section‑title">Players</div>${players.map(p=>memberRow(p)).join('')}</div>` : '' }
-          ${ staff.length ? `<div class="roster‑section"><div class="section‑title">Staff</div>${staff.map(p=>memberRow(p,true)).join('')}</div>` : '' }
+        <div class="roster-wrap">
+          ${ players.length ? `<div class="roster-section"><div class="section-title">Players</div>${players.map(p=>memberRow(p)).join('')}</div>` : '' }
+          ${ staff.length ? `<div class="roster-section"><div class="section-title">Staff</div>${staff.map(p=>memberRow(p,true)).join('')}</div>` : '' }
         </div>
       </article>`;
   }
   function matchesBoardHTML(group){
     return `
-      <aside class="matches‑board" style="grid‑column:3;grid‑row:1 / span 2">
-        <div class="mb‑title">Matches <span class="mb‑muted">(Group ${group})</span></div>
-        <div class="mb‑round">Opening Matches</div>
-        <div class="mb‑row"><div class="mb‑team"><span class="mb‑badge">TBD</span></div><div class="mb‑center">i</div><div class="mb‑team"><span class="mb‑badge">TBD</span></div></div>
-        <div class="mb‑row"><div class="mb‑team"><span class="mb‑badge">TBD</span></div><div class="mb‑center">i</div><div class="mb‑team"><span class="mb‑badge">TBD</span></div></div>
-        <div class="mb‑round">Winner's Match</div>
-        <div class="mb‑row"><div class="mb‑team"><span class="mb‑badge">TBD</span></div><div class="mb‑center">i</div><div class="mb‑team"><span class="mb‑badge">TBD</span></div></div>
-        <div class="mb‑round">Elimination Match</div>
-        <div class="mb‑row"><div class="mb‑team"><span class="mb‑badge">TBD</span></div><div class="mb‑center">i</div><div class="mb‑team"><span class="mb‑badge">TBD</span></div></div>
-        <div class="mb‑round">Decider Match</div>
-        <div class="mb‑row"><div class="mb‑team"><span class="mb‑badge">TBD</span></div><div class="mb‑center">i</div><div class="mb‑team"><span class="mb‑badge">TBD</span></div></div>
+      <aside class="matches-board" style="grid-column:3;grid-row:1 / span 2">
+        <div class="mb-title">Matches <span class="mb-muted">(Group ${group})</span></div>
+
+        <div class="mb-round">Opening Matches</div>
+        <div class="mb-row"><div class="mb-team"><span class="mb-badge">TBD</span></div><div class="mb-center">i</div><div class="mb-team"><span class="mb-badge">TBD</span></div></div>
+        <div class="mb-row"><div class="mb-team"><span class="mb-badge">TBD</span></div><div class="mb-center">i</div><div class="mb-team"><span class="mb-badge">TBD</span></div></div>
+
+        <div class="mb-round">Winner's Match</div>
+        <div class="mb-row"><div class="mb-team"><span class="mb-badge">TBD</span></div><div class="mb-center">i</div><div class="mb-team"><span class="mb-badge">TBD</span></div></div>
+
+        <div class="mb-round">Elimination Match</div>
+        <div class="mb-row"><div class="mb-team"><span class="mb-badge">TBD</span></div><div class="mb-center">i</div><div class="mb-team"><span class="mb-badge">TBD</span></div></div>
+
+        <div class="mb-round">Decider Match</div>
+        <div class="mb-row"><div class="mb-team"><span class="mb-badge">TBD</span></div><div class="mb-center">i</div><div class="mb-team"><span class="mb-badge">TBD</span></div></div>
       </aside>`;
   }
   function renderTeamsView(){
     const wrap = document.getElementById('teamsWrapper'); wrap.innerHTML='';
     groups().forEach(g=>{
-      const block = document.createElement('section'); block.className='group‑block';
-      block.innerHTML = `<div class="group‑title">Group ${g}</div><div class="group‑grid" id="grid‑${g}"></div>`;
+      const block = document.createElement('section'); block.className='group-block';
+      block.innerHTML = `<div class="group-title">Group ${g}</div><div class="group-grid" id="grid-${g}"></div>`;
       wrap.appendChild(block);
-      const grid = block.querySelector('.group‑grid');
+      const grid = block.querySelector('.group-grid');
       const ts = DATA.teams.filter(t=>t.group===g);
       const slots = [
         {col:1,row:1, team:ts[0]}, {col:2,row:1, team:ts[1]},
@@ -1027,33 +1032,33 @@ async function loadFaceToFaceFromSheet(){
 
   /* =========== CASTERS VIEW (2 + barra + 2) =========== */
   function casterCardHTML(c){
-    const flag = c.country ? `<span class="creator‑flag"><img src="${flagImgByISO(c.country)}" alt=""></span>` : '';
+    const flag = c.country ? `<span class="creator-flag"><img src="${flagImgByISO(c.country)}" alt=""></span>` : '';
     return `
-      <article class="creator‑card" data‑caster="${c.name}">
-        <div class="creator‑top">
-          <div class="creator‑avatar"><img src="${c.logo}" alt="${c.name}" onerror="this.onerror=null;this.src='${UNKNOWN_IMG}'"></div>
+      <article class="creator-card" data-caster="${c.name}">
+        <div class="creator-top">
+          <div class="creator-avatar"><img src="${c.logo}" alt="${c.name}" onerror="this.onerror=null;this.src='${UNKNOWN_IMG}'"></div>
           <div>
-            <div class="creator‑name">${c.name}</div>
-            <div class="creator‑real">${c.real||''} ${flag}</div>
+            <div class="creator-name">${c.name}</div>
+            <div class="creator-real">${c.real||''} ${flag}</div>
           </div>
         </div>
-        <div class="creator‑footer">
-          ${c.links?.x ? `<a class="btn‑icon btn‑x" href="${c.links.x}" target="_blank" rel="noopener noreferrer" title="X"><img src="./x.png" alt="X"></a>`:''}
-          ${c.links?.yt ? `<a class="btn‑icon btn‑yt" href="${c.links.yt}" target="_blank" rel="noopener noreferrer" title="YouTube"><img src="./yt.png" alt="YouTube"></a>`:''}
-          ${c.links?.twitch ? `<a class="btn‑icon btn‑tw" href="${c.links.twitch}" target="_blank" rel="noopener noreferrer" title="Twitch"><img src="./twitch.png" alt="Twitch"></a>`:''}
-          <span class="live‑chip" style="display:none">LIVE</span>
+        <div class="creator-footer">
+          ${c.links?.x ? `<a class="btn-icon btn-x" href="${c.links.x}" target="_blank" rel="noopener noreferrer" title="X"><img src="x.png" alt="X"></a>`:''}
+          ${c.links?.yt ? `<a class="btn-icon btn-yt" href="${c.links.yt}" target="_blank" rel="noopener noreferrer" title="YouTube"><img src="yt.png" alt="YouTube"></a>`:''}
+          ${c.links?.twitch ? `<a class="btn-icon btn-tw" href="${c.links.twitch}" target="_blank" rel="noopener noreferrer" title="Twitch"><img src="twitch.png" alt="Twitch"></a>`:''}
+          <span class="live-chip" style="display:none">LIVE</span>
         </div>
       </article>`;
   }
   const CASTER_DATA = [
-    { name:'NacoTV',   real:'Ignacio Alvarez', country:'AR', logo:'./naco.jpeg',
+    { name:'NacoTV',   real:'Ignacio Alvarez', country:'AR', logo:'naco.jpeg',
       links:{ x:'https://x.com/NacoTV_', yt:'https://www.youtube.com/@nacotv2', twitch:'https://www.twitch.tv/naconeta' } },
-    { name:'Spiuk',    real:'Manuel Fernández Asua', country:'ES', logo:'./spiuk.jpg',
+    { name:'Spiuk',    real:'Manuel Fernández Asua', country:'ES', logo:'spiuk.jpg',
       links:{ x:'https://x.com/SpiukYT', yt:'https://www.youtube.com/@BrawlHispano', twitch:'https://www.twitch.tv/spiukbs' },
       ytExtra:['https://www.youtube.com/@BrawlHispano'] },
-    { name:'DelMoYOu', real:'Javier del Moral Alarcón', country:'ES', logo:'./delmoyou.jpeg',
+    { name:'DelMoYOu', real:'Javier del Moral Alarcón', country:'ES', logo:'delmoyou.jpeg',
       links:{ x:'https://x.com/DelMoYOu', yt:'https://www.youtube.com/@DelMoYOu', twitch:'https://www.twitch.tv/delmoyou' } },
-    { name:'NeaRz',    real:'Luis Guevara', country:'mx', logo:'./nearz.jpg',
+    { name:'NeaRz',    real:'Luis Guevara', country:'mx', logo:'nearz.jpg',
       links:{ x:'https://x.com/n_earz', yt:'https://www.youtube.com/channel/UCdC302gH9H6kdnUBFCqY5Fg', twitch:'https://www.twitch.tv/nearz_z' } }
   ];
   function renderScrimsView(){
@@ -1062,7 +1067,7 @@ async function loadFaceToFaceFromSheet(){
     if(c1){ const el=document.createElement('div'); el.innerHTML=casterCardHTML(c1); wrap.appendChild(el.firstElementChild); }
     if(c2){ const el=document.createElement('div'); el.innerHTML=casterCardHTML(c2); wrap.appendChild(el.firstElementChild); }
 
-    const bar = document.createElement('aside'); bar.className='scrims‑bar';
+    const bar = document.createElement('aside'); bar.className='scrims-bar';
     bar.innerHTML = `<div class="title">Casters Live Now</div><div id="liveCastersList"></div>`;
     wrap.appendChild(bar);
 
@@ -1092,13 +1097,13 @@ async function loadFaceToFaceFromSheet(){
       return null;
     }
   }
-  function videoCardHTML({id,thumb,title='Loading…',author=''}) {
+  function videoCardHTML({id,thumb,title='Loading…',author=''}){
     return `
-      <a class="video‑card" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer">
-        <div class="video‑thumb"><img loading="lazy" src="${thumb}" alt="${title}"></div>
-        <div class="video‑meta">
-          <div class="video‑title">${title}</div>
-          <div class="video‑author">${author}</div>
+      <a class="video-card" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer">
+        <div class="video-thumb"><img loading="lazy" src="${thumb}" alt="${title}"></div>
+        <div class="video-meta">
+          <div class="video-title">${title}</div>
+          <div class="video-author">${author}</div>
         </div>
       </a>`;
   }
@@ -1106,16 +1111,16 @@ async function loadFaceToFaceFromSheet(){
     const grid = document.getElementById('casterVideos'); if(!grid) return;
     grid.innerHTML = '';
     const urls = [
-      'https://www.youtube.com/watch?v=B9ytE7x6‑T4',
+      'https://www.youtube.com/watch?v=B9ytE7x6-T4',
       'https://www.youtube.com/watch?v=dFrHJpblzS0',
-      'https://www.youtube.com/watch?v=‑lMBsCJsctQ',
+      'https://www.youtube.com/watch?v=-lMBsCJsctQ',
       'https://www.youtube.com/watch?v=AS0ryeLyisQ',
       'https://www.youtube.com/watch?v=ofC859O60EI',
       'https://www.youtube.com/watch?v=g6pSLApMdU4',
       'https://www.youtube.com/watch?v=LEx7zz4vrxA',
       'https://www.youtube.com/watch?v=QDgnTXgh3r8'
     ];
-    const items = urls.map(u=>({ id:ytId(u), url:u, caster:'', thumb: ytId(u)?`https://i.ytimg.com/vi/${ytId(u)}/hqdefault.jpg`:'./unknown.png' }))
+    const items = urls.map(u=>({ id:ytId(u), url:u, caster:'', thumb: ytId(u) ? `https://i.ytimg.com/vi/${ytId(u)}/hqdefault.jpg` : './unknown.png' }))
                       .filter(x=>x.id);
 
     items.forEach(it=>{
@@ -1128,9 +1133,9 @@ async function loadFaceToFaceFromSheet(){
       const meta = await fetchYTMeta(it.url);
       const card = grid.children[idx];
       if(card){
-        const img = card.querySelector('.video‑thumb img');
-        const titleEl = card.querySelector('.video‑title');
-        const authorEl = card.querySelector('.video‑author');
+        const img = card.querySelector('.video-thumb img');
+        const titleEl = card.querySelector('.video-title');
+        const authorEl = card.querySelector('.video-author');
         if(img) img.alt = meta?.title || `YouTube video`;
         if(titleEl) titleEl.textContent = meta?.title || `YouTube video`;
         if(authorEl) authorEl.textContent = meta?.author || '';
@@ -1205,11 +1210,11 @@ async function loadFaceToFaceFromSheet(){
       const author = yt?.author || caster;
       const platforms = `
         <div class="platforms">
-          ${hasTW ? `<a href="${st.tw.url}" target="_blank" rel="noopener" title="Watch on Twitch"><img src="./twitch.png" alt="Twitch"><span>Twitch</span></a>`:''}
-          ${hasYT ? `<a href="${yt.url}" target="_blank" rel="noopener" title="Watch on YouTube"><img src="./yt.png" alt="YouTube"><span>YouTube</span></a>`:''}
+          ${hasTW ? `<a href="${st.tw.url}" target="_blank" rel="noopener" title="Watch on Twitch"><img src="twitch.png" alt="Twitch"><span>Twitch</span></a>`:''}
+          ${hasYT ? `<a href="${yt.url}" target="_blank" rel="noopener" title="Watch on YouTube"><img src="yt.png" alt="YouTube"><span>YouTube</span></a>`:''}
         </div>`;
       items.push(`
-        <div class="live‑item">
+        <div class="live-item">
           <div class="avatar"><img src="${logo}" alt="${author}"></div>
           <div>
             <div class="title">${titleTop}</div>
@@ -1221,31 +1226,32 @@ async function loadFaceToFaceFromSheet(){
     box.innerHTML = items.length ? items.join('') : `<div class="csub">No casters live now.</div>`;
   }
 
+  
   function updateCasterCardsLiveBadges(){
     CASTER_DATA.forEach(c=>{
-      const card = document.querySelector(`.creator‑card[data‑caster="${c.name}"]`);
+      const card = document.querySelector(`.creator-card[data-caster="${c.name}"]`);
       if(!card) return;
-      const badge = card.querySelector('.live‑chip');
-      const btnYT = card.querySelector('.btn‑yt');
-      const btnTW = card.querySelector('.btn‑tw');
+      const badge = card.querySelector('.live-chip');
+      const btnYT = card.querySelector('.btn-yt');
+      const btnTW = card.querySelector('.btn-tw');
       const st = LIVE_STATE[c.name] || {};
       const hasYT = st.yt && st.yt.length;
       const hasTW = !!st.tw;
 
       if(hasYT && btnYT){ btnYT.href = st.yt[0].url; }
       if(hasTW && btnTW){ btnTW.href = st.tw.url; }
-      if(badge){ badge.style.display = (hasYT || hasTW) ? 'inline‑block' : 'none'; }
+      if(badge){ badge.style.display = (hasYT || hasTW) ? 'inline-block' : 'none'; }
     });
   }
 
   /* =========== ROUTER (hash) =========== */
   function setViewFromHash(){
     const hash = (location.hash || '#stats').replace('#','');
-    const viewId = hash==='teams' ? 'view‑teams' : hash==='scrims' ? 'view‑scrims' : 'view‑stats';
+    const viewId = hash==='teams' ? 'view-teams' : hash==='scrims' ? 'view-scrims' : 'view-stats';
     $$('.view').forEach(v=>v.classList.toggle('active', v.id===viewId));
     $$('#topNav .pill').forEach(a=> a.classList.toggle('active', a.dataset.view===hash || (hash==='' && a.dataset.view==='stats')));
-    if(viewId==='view‑teams') renderTeamsView();
-    if(viewId==='view‑scrims') renderScrimsView();
+    if(viewId==='view-teams') renderTeamsView();
+    if(viewId==='view-scrims') renderScrimsView();
     window.scrollTo({top:0,behavior:'smooth'});
   }
   window.addEventListener('hashchange', setViewFromHash);
